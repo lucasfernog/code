@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, windows-latest, ubuntu-22.04]
+        platform: [ubuntu-22.04]
 
     runs-on: ${{ matrix.platform }}
 
@@ -78,7 +78,7 @@ jobs:
         if: startsWith(matrix.platform, 'ubuntu')
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev pkg-config libayatana-appindicator3-dev librsvg2-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev
 
       - name: Install frontend dependencies
         run: pnpm install
@@ -124,7 +124,7 @@ jobs:
             target/release/bundle/*/*.AppImage.tar.gz.sig
             target/release/bundle/*/*.deb
             target/release/bundle/*/*.rpm
-            
+
             target/release/bundle/*/*.msi
             target/release/bundle/*/*.msi.zip
             target/release/bundle/*/*.msi.zip.sig
